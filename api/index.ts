@@ -40,7 +40,7 @@ app.post("/send-telegram", async (req, res) => {
       Amount: \`${amount} SOL\`
       Price: \`$${price}\`
       Wallet: \`${wallet}\`
-      Time: \`${new Date().toLocaleString()}\`
+      Time: \`${new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}\`
     `;
 
     const response = await fetch(
