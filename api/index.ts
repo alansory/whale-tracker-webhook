@@ -17,7 +17,6 @@ app.post("/send-telegram", async (req, res) => {
     } = req.body;
 
     console.log("hereee", JSON.stringify(req.body, null, 2));
-    // atau untuk object spesifik
     console.log("accountData:", JSON.stringify(req.body[0].accountData, null, 2));
     console.log("instructions:", JSON.stringify(req.body[0].instructions, null, 2));
     console.log("tokenTransfers:", JSON.stringify(req.body[0].tokenTransfers, null, 2));
