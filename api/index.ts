@@ -8,7 +8,34 @@ app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.post("/send-telegram", async (req, res) => {
   try {
-    console.log("LOG 1", req.body);
+    if (req.body && req.body[0]) {
+      // Detailed logging for accountData
+      if (req.body[0].accountData) {
+        console.log("\n=== ACCOUNT DATA ===");
+        req.body[0].accountData.forEach((acc, index) => {
+          console.log(`Account ${index}:`, JSON.stringify(acc, null, 2));
+        });
+      }
+
+      // Detailed logging for instructions
+      if (req.body[0].instructions) {
+        console.log("\n=== INSTRUCTIONS ===");
+        req.body[0].instructions.forEach((inst, index) => {
+          console.log(`Instruction ${index}:`, JSON.stringify(inst, null, 2));
+        });
+      }
+
+      // Detailed logging for tokenTransfers
+      if (req.body[0].tokenTransfers) {
+        console.log("\n=== TOKEN TRANSFERS ===");
+        req.body[0].tokenTransfers.forEach((transfer, index) => {
+          console.log(`Transfer ${index}:`, JSON.stringify(transfer, null, 2));
+        });
+      }
+    }
+
+    // Original logging
+    console.log("\n=== FULL REQUEST BODY ===");
     console.log("LOG CUY", JSON.stringify(req.body, null, 2));
     
     let action, tokenName, amount, wallet;
