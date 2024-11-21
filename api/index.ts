@@ -8,6 +8,7 @@ app.get("/", (req, res) => res.send("Express on Vercel"));
 
 app.post("/send-telegram", async (req, res) => {
   try {
+    console.log("LOG CUY", JSON.stringify(req.body, null, 2));
     const {
       action, // 'BUY' atau 'SELL'
       tokenName,
@@ -40,7 +41,16 @@ app.post("/send-telegram", async (req, res) => {
       Amount: \`${amount} SOL\`
       Price: \`$${price}\`
       Wallet: \`${wallet}\`
-      Time: \`${new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' })}\`
+      Time: \`${new Date().toLocaleString('id-ID', { 
+        timeZone: 'Asia/Jakarta',
+        hour12: false,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      })}\`
     `;
 
     const response = await fetch(
