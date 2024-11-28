@@ -34,6 +34,13 @@ app.post("/send-telegram", async (req, res) => {
       }
     }
 
+    // Signature logging
+    const signature = req.body[0].signature;
+    if(signature) {
+      console.log("SIGNATURE", signature);
+    }
+
+
     // Original logging
     console.log("\n=== FULL REQUEST BODY ===");
     console.log("LOG CUY", JSON.stringify(req.body, null, 2));
@@ -81,10 +88,6 @@ app.post("/send-telegram", async (req, res) => {
 
           let actionText = action === 'BUY' ? '🟢 Whales Buy!' : '🔴 Whales Sell!';
           let emojiLine = '🐋'.repeat(10);
-
-          // Ambil signature transaksi dari request body
-          const signature = req.body[0].signature;
-
           const message = `${actionText}
 ${emojiLine}
 
